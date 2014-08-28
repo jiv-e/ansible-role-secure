@@ -28,7 +28,8 @@
 - name: Create a basic firewall settings from template
   template: src=iptables/iptables.firewall.rules.j2 dest=/etc/iptables.firewall.rules
             owner=root group=root mode=0644
-
+- name: Ensure diff is installed for checking the firewall rules
+  apt: pkg=diff state=installed
 - name: Check if iptables firewall configuration differs from the template
   raw: diff /etc/iptables.initial.state <(iptables -L -n)
   register: iptablesCheck
