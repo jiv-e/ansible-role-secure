@@ -21,9 +21,11 @@
 - name : Copy known_hosts in place
   copy: src=ssh/known_hosts dest=/home/{{ jiv_secure__user }}/.ssh/known_hosts
           owner={{ jiv_secure__user }} group={{ jiv_secure__user }} mode=0600
+#TODO Prevent this from happening if there's no ssh key.
 - name: Prevent login with password
   template: src=ssh/sshd_config.j2 dest=/etc/ssh/sshd_config
           owner=root group=root mode=0644
+  when: {{ jiv_secure__preventLoginWithPassword }}
   notify: restart ssh
 - name: Create a basic firewall settings from template
   template: src=iptables/iptables.firewall.rules.j2 dest=/etc/iptables.firewall.rules

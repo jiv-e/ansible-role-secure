@@ -32,6 +32,12 @@ jiv_secure__user: me
 jiv_secure__password: $1$SaltySal$I8.h05mt1XsjaCka6Ddb2/
 
 ################################################################################
+# Prevent login with password
+################################################################################
+
+jiv_secure__preventLoginWithPassword: no
+
+################################################################################
 # Admin email - logwatch and fail2ban emails are sent to this address
 ################################################################################
 
