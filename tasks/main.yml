@@ -34,7 +34,7 @@
   apt: pkg=diff state=installed
   
 - name: Ensure /etc/iptables.previous.state exists
-  file: path=/etc/ipatbles.previous.state state=touch owner=root group=root mode=0644
+  file: path=/etc/iptables.previous.state state=touch owner=root group=root mode=0644
   
 - name: Check if iptables firewall configuration differs from the template
   raw: diff /etc/iptables.previous.state <(iptables -L -n)
