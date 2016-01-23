@@ -37,7 +37,7 @@
   file: path=/etc/ipatbles.previous.state state=touch owner=root group=root mode=0644
   
 - name: Check if iptables firewall configuration differs from the template
-  raw: diff /etc/iptables.initial.state <(iptables -L -n)
+  raw: diff /etc/iptables.previous.state <(iptables -L -n)
   register: iptablesCheck
   changed_when: iptablesCheck.rc != 0 
   failed_when: iptablesCheck.rc > 1 
